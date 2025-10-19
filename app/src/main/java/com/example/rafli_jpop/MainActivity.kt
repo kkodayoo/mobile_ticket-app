@@ -1,0 +1,93 @@
+package com.example.rafli_jpop
+
+import android.content.Intent
+import android.os.Bundle
+import android.util.Log
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.example.rafli_jpop.Pertemuan_2.SecondActivity
+import com.example.rafli_jpop.databinding.ActivityMainBinding
+import com.example.rafli_jpop.pertemuan_3.ThirdActivity
+import com.example.rafli_jpop.pertemuan_3.ThirdResultActivity
+import com.example.rafli_jpop.pertemuan_4.FourthActivity
+import com.example.rafli_jpop.pertemuan_5.FifthActivity
+import com.example.rafli_jpop.pertemuan_6.SixthActivity
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.snackbar.Snackbar
+
+class MainActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityMainBinding
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        Log.e("onCreate", "{Main Activity} dibuat pertama kali")
+        enableEdgeToEdge()
+        val sharedPref = getSharedPreferences("user_pref", MODE_PRIVATE)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+        val username = intent.getStringExtra("username")
+        Log.e("Info Dialog","Anda login sebagai {$username}")
+
+        binding.btnThird.setOnClickListener{
+            val intent = Intent(this, ThirdActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnSecond.setOnClickListener{
+            val intent = Intent(this, SecondActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnToFourth.setOnClickListener{
+            val intent = Intent(this, FourthActivity::class.java)
+
+            /*tambahkan bagian berikut*/
+            intent.putExtra("name", "Politeknik Caltex Riau")
+            intent.putExtra("from", "Rumbai")
+            intent.putExtra("age", 25)
+
+            startActivity(intent)
+        }
+
+        binding.btnToFifth.setOnClickListener{
+            val intent = Intent(this, FifthActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnToAuth.setOnClickListener{
+            val intent = Intent(this, AuthActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnToSixth.setOnClickListener{
+            val intent = Intent(this, SixthActivity::class.java)
+            startActivity(intent)
+        }
+        binding.btnLogout.setOnClickListener{
+            MaterialAlertDialogBuilder(this)
+                .setTitle("Konfirmasi")
+                .setMessage("Terima Kasih")
+                .setPositiveButton("Oke") { dialog, _ ->
+                    val editor = sharedPref.edit()
+                    editor.clear()
+                    editor.apply()
+                    dialog.dismiss()
+                    finish()
+                }
+                .show()
+        }
+    }
+    override fun onStart() {
+        super.onStart()
+        Log.e("onStart", "onStart: {Main Activity} terlihat di layar")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.e("onDestroy", "{Main Activity} dihapus dari stack")
+    }
+}

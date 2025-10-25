@@ -7,15 +7,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.rafli_jpop.Pertemuan_2.SecondActivity
+import com.example.rafli_jpop.Home.Pertemuan_2.SecondActivity
+import com.example.rafli_jpop.Home.pertemuan_3.ThirdActivity
+import com.example.rafli_jpop.Home.pertemuan_4.FourthActivity
+import com.example.rafli_jpop.Home.pertemuan_5.FifthActivity
+import com.example.rafli_jpop.Home.pertemuan_6.SixthActivity
 import com.example.rafli_jpop.databinding.ActivityMainBinding
-import com.example.rafli_jpop.pertemuan_3.ThirdActivity
-import com.example.rafli_jpop.pertemuan_3.ThirdResultActivity
-import com.example.rafli_jpop.pertemuan_4.FourthActivity
-import com.example.rafli_jpop.pertemuan_5.FifthActivity
-import com.example.rafli_jpop.pertemuan_6.SixthActivity
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
 
@@ -34,17 +32,17 @@ class MainActivity : AppCompatActivity() {
         }
 
         val username = intent.getStringExtra("username")
-        Log.e("Info Dialog","Anda login sebagai {$username}")
+        Log.e("Info Dialog", "Anda login sebagai {$username}")
 
-        binding.btnThird.setOnClickListener{
+        binding.btnThird.setOnClickListener {
             val intent = Intent(this, ThirdActivity::class.java)
             startActivity(intent)
         }
-        binding.btnSecond.setOnClickListener{
+        binding.btnSecond.setOnClickListener {
             val intent = Intent(this, SecondActivity::class.java)
             startActivity(intent)
         }
-        binding.btnToFourth.setOnClickListener{
+        binding.btnToFourth.setOnClickListener {
             val intent = Intent(this, FourthActivity::class.java)
 
             /*tambahkan bagian berikut*/
@@ -54,20 +52,19 @@ class MainActivity : AppCompatActivity() {
 
             startActivity(intent)
         }
-
-        binding.btnToFifth.setOnClickListener{
+        binding.btnToFifth.setOnClickListener {
             val intent = Intent(this, FifthActivity::class.java)
             startActivity(intent)
         }
-        binding.btnToAuth.setOnClickListener{
+        binding.btnToAuth.setOnClickListener {
             val intent = Intent(this, AuthActivity::class.java)
             startActivity(intent)
         }
-        binding.btnToSixth.setOnClickListener{
+        binding.btnToSixth.setOnClickListener {
             val intent = Intent(this, SixthActivity::class.java)
             startActivity(intent)
         }
-        binding.btnLogout.setOnClickListener{
+        binding.btnLogout.setOnClickListener {
             MaterialAlertDialogBuilder(this)
                 .setTitle("Konfirmasi")
                 .setMessage("Terima Kasih")
@@ -81,6 +78,7 @@ class MainActivity : AppCompatActivity() {
                 .show()
         }
     }
+
     override fun onStart() {
         super.onStart()
         Log.e("onStart", "onStart: {Main Activity} terlihat di layar")

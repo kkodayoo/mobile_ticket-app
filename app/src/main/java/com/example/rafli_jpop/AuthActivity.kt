@@ -41,7 +41,7 @@ class AuthActivity : AppCompatActivity() {
                 editor.putBoolean("isLogin", true)
                 editor.putString("username", username)
                 editor.apply()
-                val intent = Intent(this, MainActivity::class.java)
+                val intent = Intent(this, BaseActivity::class.java)
                 intent.putExtra("username", "$username")
                 intent.putExtra("password", "$password")
                 startActivity(intent)
